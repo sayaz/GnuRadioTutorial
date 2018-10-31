@@ -137,6 +137,6 @@ Draw a flow graph to test this new block
 
 ![capture](https://user-images.githubusercontent.com/22035469/47813709-77451a00-dd11-11e8-8e27-eb19788ead98.JPG)
 
-In the GUI plot we can see the amplitude of the sine wave = 2 is being multiplied by out multiplication constant 2 and the output amplitude is 4
+In the GUI plot we can see the amplitude of the sine wave = 2 is being multiplied by our multiplication constant 2 and the output amplitude is 4
 ![capture](https://user-images.githubusercontent.com/22035469/47813782-980d6f80-dd11-11e8-9d96-8ed588d33a56.JPG)
 
