@@ -1,7 +1,7 @@
 # Gnu Radio Tutorial
 ###### Procedure for  making OOT (Out of Tree) module - Python
 
-
+#### Tutorial 1 : Multiply Block (Single Input/Output port block that takes in a value from user and multiplies with incoming signal)
 
 Setting up a new block
 ```
@@ -145,6 +145,10 @@ In the GUI plot we can see the amplitude of the sine wave = 2 is being multiplie
 
 
 
+#### Tutorial 2 : Adder Block (Two Input-One Output port block that takes in a value from user/vector source in both of the input ports and add them together)
+
+Same procedure is followed from previous example, just the coding is different
+
 qa_Adder.py
 ```Python
 from gnuradio import gr, gr_unittest
@@ -218,3 +222,7 @@ Adder.xml
   </source>
 </block>
 ```
+
+![capture](https://user-images.githubusercontent.com/22035469/47840874-56b2a980-dd7d-11e8-83f8-069559053a68.JPG)
+
+![capture](https://user-images.githubusercontent.com/22035469/47840922-7d70e000-dd7d-11e8-9ed3-156645a105f5.JPG)
