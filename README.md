@@ -1,6 +1,8 @@
 # Gnu Radio Tutorial
 ###### Procedure for  making OOT (Out of Tree) module - Python
 
+
+
 Setting up a new block
 ```
 $ gr_modtool newmod tutorial
@@ -140,3 +142,79 @@ Draw a flow graph to test this new block
 In the GUI plot we can see the amplitude of the sine wave = 2 is being multiplied by our multiplication constant 2 and the output amplitude is 4
 ![capture](https://user-images.githubusercontent.com/22035469/47813782-980d6f80-dd11-11e8-9d96-8ed588d33a56.JPG)
 
+
+
+
+qa_Adder.py
+```Python
+from gnuradio import gr, gr_unittest
+from gnuradio import blocks
+from Adder import Adder
+
+class qa_Adder (gr_unittest.TestCase):
+
+    def setUp (self):
+        self.tb = gr.top_block ()
+
+    def tearDown (self):
+        self.tb = None
+
+    def test_001_t (self):
+    	src0 = blocks.vector_source_f(1, 3, 5, 7, 9)
+        src1 = blocks.vector_source_f(0, 2, 4, 6, 8)
+        add = Adder()
+        sink = blocks.vector_sink_f()
+        self.tb.connect((src0, 0), (add, 0))
+        self.tb.connect((src1, 0), (add, 1))
+        self.tb.connect(add, sink)
+        self.tb.run ()
+        self.assertEqual(sink.data(), (1, 5, 9, 13, 17))
+
+if __name__ == '__main__':
+    gr_unittest.run(qa_Adder, "qa_Adder.xml")
+```
+
+Adder.py
+```Python
+import numpy
+from gnuradio import gr
+
+class Adder(gr.sync_block):
+    def __init__(self):
+        gr.sync_block.__init__(self,
+            name="Adder",
+            in_sig=[numpy.float32,numpy.float32],
+            out_sig=[numpy.float32])
+
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = input_items[0] + input_items[1]
+        return len(output_items[0])
+```        
+
+Adder.xml
+```Python
+<?xml version="1.0"?>
+<block>
+  <name>Adder</name>
+  <key>personal_Adder</key>
+  <category>[personal]</category>
+  <import>import personal</import>
+  <make>personal.Adder()</make>
+
+  <sink>
+    <name>in0</name>
+    <type>float</type>
+  </sink>
+
+  <sink>
+    <name>in1</name>
+    <type>float</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>
+```
